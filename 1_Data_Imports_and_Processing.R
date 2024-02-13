@@ -128,6 +128,7 @@ check = data.frame(unique(wrld_simpl4$NAME)) # Serbia and Montenegro are being l
 wrld_simpl4$ISO3 = replace(wrld_simpl4$ISO3, 245, "SRB")
 wrld_simpl4
 unique(wrld_simpl4$ISO3)
+unique(wrld_simpl4$NAME)
 
 #### 
 # 0.3 Bringing in the trade data.
@@ -227,15 +228,18 @@ trade_data1$NAME = trade_data1$partner
 trade_data2 = left_join(trade_data1, namematches, by = "NAME")
 head(trade_data2)
 na_rows1 = trade_data2[!complete.cases(trade_data2$ISO3.y),] # Again USSR, Yugoslav SFR and Serbia & Montenegro.
+# The USSR is just a column of 1s and the data are post-dissolution, so are excluded from analyses.
+# Serbia and Montenegro are separate in the trade data but with values of zero.
+# Their values are attributed to a joint 'Serbia and Montenegro' classification.
+# I will therefore give this an ISO code for Serbia for these data, just to ensure everything works together OK.
+# Yugsolav SFR is also a column of 1s and the data are post-dissolution so excluded from analyses.
+# The 102 tonnes are just the 1s summed for USSR and Yugoslav SFR (51 crops).
 na_rows1
 sum(na_rows1$dmi_tonnes_average_2000) # 102 tonnes
 trade_data_c2000 = subset(trade_data2, select = -c(X, NAME))
 colnames(trade_data_c2000) = c("crop", "reporter", "partner", "dmi_tonnes_average_2000",
                                "ISO_reporter", "ISO_partner")
 head(trade_data_c2000)
-# Serbia and Montenegro are separate in the trade data but with values of zero.
-# Their values are attributed to a joint 'Serbia and Montenegro' classification.
-# I will therefore give this an ISO code for Serbia for these data, just to ensure everything works together OK.
 
 #### 
 # 0.4 Bringing in the crop data (Monfreda et al., 2008)
@@ -283,6 +287,9 @@ waterdata1 = waterdata %>%
 head(waterdata1)
 waterdata1 = filter(waterdata1, mean_water_g !="NA")
 waterdata1
+# exported to produce Table S2
+#write.csv(waterdata1, paste0(water_dir, "waterdataprocessed.csv")) 
+
 # For the dry weight, I'll need to filter the production maps to just fruit and veg and make sure they marry up with the water list
 fnv_productionmaps_global = raster::subset(production, waterdata1$crop)
 names(fnv_productionmaps_global)

@@ -88,6 +88,21 @@ pressure_dry_percountry_sums = pressure_dry_percountry4 %>%
 form_percountry1b = paste0(outDir_pressure_percountry, "pressure_dry_percountry_fvsums_organised_update_1stdec2023.csv")
 # write.csv(pressure_dry_percountry_sums, file = form_percountry1b)
 
+# and what are the global rankings of fruit and veg?
+globalrank_pressure_dry = na.omit(pressure_dry_percountry4) %>% 
+  mutate(rank = rank(pressure_dry)) %>% 
+  arrange(-rank)
+# how about if you sum the pressure_dry across all countries?
+globalrank_pressure_dry2 = pressure_dry_percountry4 %>% 
+  group_by(crop) %>% 
+  summarise(sum_percrop = sum(pressure_dry, na.rm = TRUE)) %>% 
+  mutate(rank = rank(sum_percrop)) %>% 
+  arrange(-rank)
+# outdir = "SHEFS/SHEFS_Sept2023_Update/5_FigureData_and_Figs/"
+# write.csv(data.frame(globalrank_pressure_dry2), paste0(outdir, "global_rankings_crops_based_on_pressure_dry.csv"))
+# top is sourcherry, then persimmon, then okra, but you still have plantain and date up there
+
+
 # 4.2 ASR per country:
 
 # Commented out below as slow to run:
@@ -119,6 +134,24 @@ head(asr_dry_percountry4); str(asr_dry_percountry4)
 colnames(asr_dry_percountry4) = c("countrycode", "country", "crop", "asr")
 form_percountry1a = paste0(outDir_asr_percountry, "asr_dry_percountry_organised_update_1stdec2023.csv")
 # write.csv(asr_dry_percountry4, file = form_percountry1a)
+
+# what are the ranges of this?
+range(asr_dry_percountry4$asr, na.rm = TRUE) #  0 1321752
+1321752-0 # ASR RANGE: 1321752
+
+# and what are the global rankings of fruit and veg?
+globalrank_asr = na.omit(asr_dry_percountry4) %>% 
+  mutate(rank = rank(asr)) %>% 
+  arrange(-rank)
+# how about if you sum the asr across all countries?
+globalrank_asr2 = asr_dry_percountry4 %>% 
+  group_by(crop) %>% 
+  summarise(sum_percrop = sum(asr, na.rm = TRUE)) %>% 
+  mutate(rank = rank(sum_percrop)) %>% 
+  arrange(-rank)
+# outdir = "SHEFS/SHEFS_Sept2023_Update/5_FigureData_and_Figs/"
+# write.csv(data.frame(globalrank_asr2), paste0(outdir, "global_rankings_crops_based_on_asr.csv"))
+# top is plantain, then banana, then tomato, then date
 
 # Total ASR, across fruits and vegetables, per country:
 asr_percountry_sums = asr_dry_percountry4 %>% 
@@ -157,6 +190,27 @@ head(production_dry_percountry4); str(production_dry_percountry4)
 colnames(production_dry_percountry4) = c("countrycode", "country", "crop", "production")
 form_percountry1a = paste0(outDir_production_percountry, "production_dry_percountry_organised_update.csv")
 # write.csv(production_dry_percountry4, file = form_percountry1a)
+
+# what are the ranges of this?
+range(production_dry_percountry4$production, na.rm = TRUE) #  2.382207e-44 1.605996e+04
+1.605996e+04-2.382207e-44 # Production RANGE: 16059.96
+
+# and what are the global rankings of fruit and veg?
+globalrank_production = na.omit(production_dry_percountry4) %>% 
+  mutate(rank = rank(production)) %>% 
+  arrange(-rank)
+#print(globalrank_production, n = 25)
+# how about if you sum the production across all countries?
+globalrank_production2 = production_dry_percountry4 %>% 
+  group_by(crop) %>% 
+  summarise(sum_percrop = sum(production, na.rm = TRUE)) %>% 
+  mutate(rank = rank(sum_percrop)) %>% 
+  arrange(-rank)
+# outdir = "SHEFS/SHEFS_Sept2023_Update/5_FigureData_and_Figs/"
+# write.csv(data.frame(globalrank_production2), paste0(outdir, "global_rankings_crops_based_on_production.csv"))
+# top is dates, then plantain, then bananas...
+
+
 
 # Total production, across fruits and vegetables, per country:
 prod_percountry_sums = production_dry_percountry4 %>% 
@@ -451,7 +505,7 @@ india_total_consumption # 77144864
 ## As before, as the datasets aren't mine to share, I include basic scripting below. I brought in csv files, subset
 ## for the years and crops of interest, and then read them in as a single file, as listed below.
 
-outdir_old = "SHEFS/SHEFS_March2023_Update/19July2023/"
+outdir_old = "SHEFS/OLD/SHEFS_March2023_Update/19July2023/"
 df_2 = read.csv(paste0(outdir_old,"trade_data_all_28082023.csv")) # This is the one that isn't just filtered to 1997-2003.
 head(df_2)
 tradedatapost2003 = subset(df_2, select = -c(X))

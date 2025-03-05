@@ -179,7 +179,7 @@ unique(wrld_simpl4$NAME)
 # form_1a = paste0(outdir, "trade_data_all_28082023a.csv")
 # #write.csv(dfa, file = form_1a)
 
-outdir = "SHEFS/SHEFS_March2023_Update/19July2023/"
+outdir = "SHEFS/OLD/SHEFS_March2023_Update/19July2023/"
 tradedata = read.csv(paste0(outdir, "trade_data_all_28082023a.csv"))
 tradedata = subset(tradedata, select = -c(X))
 colnames(tradedata) = c("reporter", "partner", "dmi_tonnes", "crop", "year")

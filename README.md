@@ -9,7 +9,7 @@
 # Please note that any country names referred to in this script are as per the source data being referenced, rather than representing the official, up to date names of all countries.
 # We are therefore not showing agreement with country names used, nor intending to cause any offence by using these names. The names we use in our manuscript text are correct and up to date.
 
-# Below is a sumamry of what the R scripts do:
+# Below is a summary of what the R scripts do:
 
 # 1. Bring in & process the species data
 # 2. Bring in world polygons

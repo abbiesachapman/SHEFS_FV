@@ -1,9 +1,13 @@
 # SHEFS_FV
 # R scripts and data to accompany 'Quantifying the biodiversity pressures of fruit and vegetables consumption in the UK, India, and South Africa'.
 
+# Code written and tested in R Studio - R version 4.3.1 (2023-06-16 ucrt) -- "Beagle Scouts", Copyright (C) 2023 The R Foundation for Statistical Computing, Platform: x86_64-w64-mingw32/x64 (64-bit)
+# R package versions are as cited in the manuscript.
+# The scripts should not require any non-standard hardware and should run quickly on a "normal" desktop computer. Any script components which are time-consuming (e.g. several hours) are marked as such in the script and commented out so the user can decide when to run these parts. Expected outputs are as documented in the scripts, as well as any instructions. 
+
 # Please cite the associated manuscript when using these data and/or scripts.
 
-# Please note that some of the data files are not available here. Trade data will need to be requested from C.Dalin & H.Kennard, as they have been used with permission for this work.
+# Please note that some of the data files are not available here. Trade data will need to be requested from C.Dalin & H.Kennard, as they have been used with permission for this work. A subset of the data has been provided for demo purposes.
 # Crop data are available from Monfreda et al. (2008): http://www.earthstat.org/harvested-area-yield-175-crops/.
 
 # Please note that any country names referred to in this script are as per the source data being referenced, rather than representing the official, up to date names of all countries.

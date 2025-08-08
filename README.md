@@ -1,5 +1,5 @@
 # SHEFS_FV
-# R scripts and data to accompany 'Quantifying the biodiversity pressures of fruit and vegetables consumption in the UK, India, and South Africa'.
+# R scripts and data to accompany 'Biodiversity impact of fruit and vegetable consumption in the United Kingdom, India and South Africa varies by product and growing location'.
 
 # Code written and tested in R Studio - R version 4.3.1 (2023-06-16 ucrt) -- "Beagle Scouts", Copyright (C) 2023 The R Foundation for Statistical Computing, Platform: x86_64-w64-mingw32/x64 (64-bit)
 # R package versions are as cited in the manuscript.
